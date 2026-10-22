@@ -38,7 +38,8 @@ local Mouse = Player:GetMouse()
 
 local SelfModules = {
 	UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/UI.lua"))(),
-	Directory = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Directory.lua"))(),
+	Directory = loadstring(game:Htt
+	pGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Directory.lua"))(),
 }
 local Storage = { Connections = {}, Tween = { Cosmetic = {} } }
 
@@ -349,8 +350,8 @@ function Library:AddWindow(options)
 		SelfModules.UI.Create("Frame", {
 			Name = "Background",
 			BackgroundColor3 = Library.Theme.BackgroundColor,
-			Position = UDim2.new(0, 30, 0, 40),
-			Size = UDim2.new(1, -30, 1, -40),
+			Position = UDim2.new(0, 130, 0, 40), -- Changed 30 to 130 to fit the new sidebar width
+			Size = UDim2.new(1, -130, 1, -40), -- Changed -30 to -130
 
 			SelfModules.UI.Create("Frame", {
 				Name = "Filling",
@@ -385,7 +386,7 @@ function Library:AddWindow(options)
 			Name = "Sidebar",
 			BackgroundColor3 = Library.Theme.SidebarColor,
 			Position = UDim2.new(0, 0, 0, 40),
-			Size = UDim2.new(0, 30, 1, -40),
+			Size = UDim2.new(0, 130, 1, -40), -- Changed 30 to 130 so it's always open
 			ZIndex = 2,
 
 			SelfModules.UI.Create("Frame", {
@@ -438,16 +439,7 @@ function Library:AddWindow(options)
 				}),
 			}),
 
-			SelfModules.UI.Create("TextLabel", {
-				Name = "Indicator",
-				BackgroundTransparency = 1,
-				Position = UDim2.new(1, -30, 0, 0),
-				Size = UDim2.new(0, 30, 0, 30),
-				Font = Enum.Font.SourceSansBold,
-				Text = "+",
-				TextColor3 = Library.Theme.TextColor,
-				TextSize = 20,
-			}),
+
 		}, UDim.new(0, 5))
 	})
 
@@ -676,11 +668,7 @@ function Library:AddWindow(options)
 		end
 	end)
 
-	Window.Sidebar.Frame.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 and Mouse.Y - Window.Sidebar.Frame.AbsolutePosition.Y <= 25 then
-			toggleSidebar(not Window.Sidebar.Toggled)
-		end
-	end)
+
 
 	-- Tab
 
@@ -725,7 +713,7 @@ function Library:AddWindow(options)
 				Name = "Button",
 				AutoButtonColor = false,
 				BackgroundColor3 = SelfModules.UI.Color.Add(Library.Theme.SidebarColor, Color3.fromRGB(5, 5, 5)),
-				BackgroundTransparency = 1,
+				BackgroundTransparency = 0,
 				Position = UDim2.new(0, 1, 0, 1),
 				Size = UDim2.new(1, -2, 1, -2),
 				Font = Enum.Font.SourceSans,
